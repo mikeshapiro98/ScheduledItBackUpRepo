@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims;
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+<div class="navbar-collapse collapse"> <!--collapsing added for small screens here and below in else-->
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item active mr-4">
+            <!--class="nav-item active mr-4" added to get logoff the heck away here and for register link below in else-->
+            @Html.ActionLink("Hello, " + ((ClaimsIdentity)User.Identity).FindFirstValue("Fname") + " "+ ((ClaimsIdentity)User.Identity).FindFirstValue("Lname") + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    </div>
+    }
+    }
+    else
+    {
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item active mr-4">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    </div>
+    }
