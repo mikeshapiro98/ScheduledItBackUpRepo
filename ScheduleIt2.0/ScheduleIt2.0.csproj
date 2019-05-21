@@ -215,8 +215,13 @@
     <Compile Include="Migrations\201905102103230_DummyUsers.Designer.cs">
       <DependentUpon>201905102103230_DummyUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905202110234_AddingEvent.cs" />
+    <Compile Include="Migrations\201905202110234_AddingEvent.Designer.cs">
+      <DependentUpon>201905202110234_AddingEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -355,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905102103230_DummyUsers.resx">
       <DependentUpon>201905102103230_DummyUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905202110234_AddingEvent.resx">
+      <DependentUpon>201905202110234_AddingEvent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
