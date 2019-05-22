@@ -24,7 +24,15 @@ namespace ScheduleIt2._0
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      //jQuery fullcalendar plugin css
+                      "~/Content/fullcalendar.css"));
+            
+            //jQuery fullcalendar plugin js
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+                      "~/Scripts/moment.js",
+                       "~/Scripts/fullcalendar.js",
+                       "~/Scripts/fullcalendar-custom.js"));
         }
     }
 }
