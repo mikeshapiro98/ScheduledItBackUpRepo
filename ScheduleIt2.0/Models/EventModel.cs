@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,8 @@ namespace ScheduleIt2._0.Models
 {
     public class EventModel
     {
+
+        [Key]
         /// <summary>
         ///event id property
         /// </summary>

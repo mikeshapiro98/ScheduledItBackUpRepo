@@ -456,3 +456,4 @@ C:\Users\Student\Source\Repos\ScheduleIt2.0\ScheduleIt2.0\obj\Debug\ScheduleIt2.
 C:\Users\Student\Source\Repos\ScheduleIt2.0\ScheduleIt2.0\obj\Debug\ScheduleIt2.0.pdb
 C:\Users\Student\Source\Repos\ScheduleIt2.0\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.AddingEvent.resources
 C:\Users\micha\OneDrive\Desktop\ScheduleIt2.0LP\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.AddingEvent.resources
+C:\Users\micha\OneDrive\Desktop\ScheduleIt2.0LP\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.AddDbSetForEventModel.resources

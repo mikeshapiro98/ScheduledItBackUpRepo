@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201905202110234_AddingEvent.Designer.cs">
       <DependentUpon>201905202110234_AddingEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905221734454_AddDbSetForEventModel.cs" />
+    <Compile Include="Migrations\201905221734454_AddDbSetForEventModel.Designer.cs">
+      <DependentUpon>201905221734454_AddDbSetForEventModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EventModel.cs" />
@@ -424,6 +428,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_CalendarPartial.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -466,6 +471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905202110234_AddingEvent.resx">
       <DependentUpon>201905202110234_AddingEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221734454_AddDbSetForEventModel.resx">
+      <DependentUpon>201905221734454_AddDbSetForEventModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

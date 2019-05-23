@@ -75,5 +75,8 @@ namespace ScheduleIt2._0.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<EventModel> EventModels { get; set; }
+
     }
 }
