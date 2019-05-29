@@ -77,6 +77,6 @@ namespace ScheduleIt2._0.Models
         }
 
         public DbSet<EventModel> EventModels { get; set; }
-
+        public DbSet<WorkTimeEventModel> WorkTimeEventModels { get; set; }
     }
 }

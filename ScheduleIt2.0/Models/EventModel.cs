@@ -18,12 +18,12 @@ namespace ScheduleIt2._0.Models
         /// <summary>
         ///start time of event property
         /// </summary>
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
         /// <summary>
         ///end time of event property
         /// </summary>
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         /// <summary>
         ///note attached to event property

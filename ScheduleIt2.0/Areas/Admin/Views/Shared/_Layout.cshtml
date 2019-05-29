@@ -42,6 +42,10 @@
     <div class="container body-content mt-5">
         <!--mt-5 added so any body content isn't right underneath the nav-->
         @RenderBody()
+
+
+        @Html.Action(actionName: "Create", controllerName: "WorkTimeEvent")
+
         <hr />
         <footer>
             <!--Add Footer Partial view-->

@@ -74,6 +74,7 @@ namespace ScheduleIt2._0.Models
         [Display(Name = "Last Name"), Required]
         public string Lname { get; set; }
         [Display(Name = "Date of Birth")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime BirthDate { get; set; }
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
@@ -82,7 +83,9 @@ namespace ScheduleIt2._0.Models
         [Display(Name = "Full Time")]
         public bool FullTime { get; set; }
         [Display(Name = "Start Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime StartDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         [Display(Name = "End Date")]
         public DateTime EndDate { get; set; }
         [Display(Name = "Hourly Pay Rate")]

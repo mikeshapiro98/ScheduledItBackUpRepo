@@ -177,6 +177,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WorkTimeEventController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,11 +229,20 @@
     <Compile Include="Migrations\201905221734454_AddDbSetForEventModel.Designer.cs">
       <DependentUpon>201905221734454_AddDbSetForEventModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905242016239_WorkTimeEvent.cs" />
+    <Compile Include="Migrations\201905242016239_WorkTimeEvent.Designer.cs">
+      <DependentUpon>201905242016239_WorkTimeEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905242053002_EventModel.cs" />
+    <Compile Include="Migrations\201905242053002_EventModel.Designer.cs">
+      <DependentUpon>201905242053002_EventModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\WorkTimeEventModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -443,6 +453,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_CalendarPartial.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\WorkTimeEvent\Create.cshtml" />
+    <Content Include="Views\WorkTimeEvent\Delete.cshtml" />
+    <Content Include="Views\WorkTimeEvent\Details.cshtml" />
+    <Content Include="Views\WorkTimeEvent\Edit.cshtml" />
+    <Content Include="Views\WorkTimeEvent\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -490,6 +505,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221734454_AddDbSetForEventModel.resx">
       <DependentUpon>201905221734454_AddDbSetForEventModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242016239_WorkTimeEvent.resx">
+      <DependentUpon>201905242016239_WorkTimeEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242053002_EventModel.resx">
+      <DependentUpon>201905242053002_EventModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

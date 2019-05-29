@@ -51,7 +51,6 @@ namespace ScheduleIt2._0.Controllers
                 _userManager = value;
             }
         }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
