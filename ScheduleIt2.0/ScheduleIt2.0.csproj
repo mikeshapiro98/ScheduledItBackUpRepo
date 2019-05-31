@@ -175,8 +175,10 @@
     <Compile Include="Areas\Employee\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TimeOffEventController.cs" />
     <Compile Include="Controllers\WorkTimeEventController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,11 +239,16 @@
     <Compile Include="Migrations\201905242053002_EventModel.Designer.cs">
       <DependentUpon>201905242053002_EventModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905292322301_tryagain.cs" />
+    <Compile Include="Migrations\201905292322301_tryagain.Designer.cs">
+      <DependentUpon>201905292322301_tryagain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TimeOffEvent.cs" />
     <Compile Include="Models\WorkTimeEventModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -458,6 +465,12 @@
     <Content Include="Views\WorkTimeEvent\Details.cshtml" />
     <Content Include="Views\WorkTimeEvent\Edit.cshtml" />
     <Content Include="Views\WorkTimeEvent\Index.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\TimeOffEvent\Create.cshtml" />
+    <Content Include="Views\TimeOffEvent\Delete.cshtml" />
+    <Content Include="Views\TimeOffEvent\Details.cshtml" />
+    <Content Include="Views\TimeOffEvent\Edit.cshtml" />
+    <Content Include="Views\TimeOffEvent\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -511,6 +524,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905242053002_EventModel.resx">
       <DependentUpon>201905242053002_EventModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905292322301_tryagain.resx">
+      <DependentUpon>201905292322301_tryagain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

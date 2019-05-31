@@ -78,5 +78,8 @@ namespace ScheduleIt2._0.Models
 
         public DbSet<EventModel> EventModels { get; set; }
         public DbSet<WorkTimeEventModel> WorkTimeEventModels { get; set; }
+        public DbSet<TimeOffEvent> TimeOffEvents { get; set; }
+
+       // public System.Data.Entity.DbSet<ScheduleIt2._0.Models.TimeOffEvent> TimeOffEvents { get; set; }
     }
 }

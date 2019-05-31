@@ -1,4 +1,5 @@
 ﻿@using ScheduleIt2._0.Models
+
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
@@ -39,22 +40,107 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Log in" class="btn btn-primary" />
-                        <!--login/out area that redirects to Actions in WorkTimeEvent controller-->
-                        <input type="submit" value="Clock In" class="btn btn-secondary" formaction="@Url.Action("ClockIn", "WorkTimeEvent")" formmethod="post" />
-                        <input type="submit" value="Clock Out" class="btn btn-secondary" formaction="@Url.Action("ClockOut", "WorkTimeEvent")" formmethod="post" />
+                        <!-- button to open clock in modal-->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ClockInModal">Clock In</button>
+                        <!-- button to open clock out modal-->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ClockOutModal">Clock Out</button>
+                    </div>
+                </div>
+
+                <!-- The Clock In Modal -->
+                <div class="modal" id="ClockInModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title"></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <!--Text area for clock in message-->
+                                <div class="form-group">
+                                    <label for="clockin">Clock in:</label>
+                                    <br />
+                                    <textarea type="text" class="form-control" id="clockin" style="min-width: 100%" rows="4" placeholder="This is a clock in note"></textarea>
+
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Select a clock in type
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Normal clock in</a>
+                                        <a class="dropdown-item" href="#">Break clock in</a>
+                                        <a class="dropdown-item" href="#">Lunch clock in</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <!-- redirects to Actions in WorkTimeEvent controller -->
+                                <button type="submit" class="btn btn-danger" formaction="@Url.Action("ClockIn", "WorkTimeEvent")" formmethod="post">Confirm</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Clock Out Modal -->
+                <div class="modal" id="ClockOutModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title"></h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <!--Text area for clock in message-->
+                                <div class="form-group">
+                                    <label for="clockout">Clock out:</label>
+                                    <br />
+                                    <textarea type="text" class="form-control" id="clockout" style="min-width: 100%" rows="4" placeholder="This is a clock out note"></textarea>
+
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Select a clock out type
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Normal clock out</a>
+                                        <a class="dropdown-item" href="#">Break clock out</a>
+                                        <a class="dropdown-item" href="#">Lunch clock out</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <!-- redirects to Actions in WorkTimeEvent controller -->
+                                <button type="submit" class="btn btn-danger" formaction="@Url.Action("ClockOut", "WorkTimeEvent")" formmethod="post">Confirm</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <p>
-                 
+
                     <h6>@TempData["Message"]</h6>
-                  
+
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
-                    @* Enable this once you have account confirmation enabled for password reset functionality
-                <p>
-                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                </p>*@
-                }
+                @* Enable this once you have account confirmation enabled for password reset functionality
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>*@
+            }
         </section>
     </div>
     <div class="col-md-4">

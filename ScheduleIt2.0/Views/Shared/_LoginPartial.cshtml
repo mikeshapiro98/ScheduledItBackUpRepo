@@ -8,12 +8,23 @@
 
 <div class="navbar-collapse collapse"> <!--collapsing added for small screens here and below in else-->
     <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item active mr-4">
+        <li class="nav-item active mr-3">
             <!--class="nav-item active mr-4" added to get logoff the heck away here and for register link below in else-->
-            @Html.ActionLink("Hello, " + ((ClaimsIdentity)User.Identity).FindFirstValue("Fname") + " "+ ((ClaimsIdentity)User.Identity).FindFirstValue("Lname") + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+            <!--Dropdown menu attached to name-->
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @Html.ActionLink(((ClaimsIdentity)User.Identity).FindFirstValue("Fname") + " " + ((ClaimsIdentity)User.Identity).FindFirstValue("Lname"), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Goes somewhere</a>
+                    <a class="dropdown-item" href="#">Goes somewhere else</a>
+                    <a class="dropdown-item" href="#">Goes another place</a>
+                    <!-- log off button-->
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                </div>
+            </div>
+         </ul>
     </div>
     }
     }

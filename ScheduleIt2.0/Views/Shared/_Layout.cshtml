@@ -31,28 +31,45 @@
                     <li>
                         <a href="@Url.Action("Index", "Home")">
                             <span class="fa-stack fa-2x">
-                                <i class="fas fa-home fa-stack-1x fa-inverse"style="color:blue"></i>
+                                <i class="fas fa-home fa-stack-1x fa-inverse" style="color:blue"></i>
                             </span>
-                            Home
+                            @*Home*@
                         </a>
                     </li> <!--class="nav-item active mr-3" added too give links space-->
                     <li>
                         <a href="@Url.Action("About", "Home")">
-                            <span class="fa-stack fa-2x" >
-                                <i class="fas fa-address-card fa-stack-1x fa-inverse"style="color:blue"></i>
+                            <span class="fa-stack fa-2x">
+                                <i class="fas fa-address-card fa-stack-1x fa-inverse" style="color:blue"></i>
                             </span>
-                            About
+                            @*About*@
                         </a>
                     </li>
                     <li>
                         <a href="@Url.Action("Contact", "Home")">
                             <span class="fa-stack fa-2x">
-                                <i class="fas fa-envelope-square fa-stack-1x fa-inverse"style="color:blue"></i>
+                                <i class="fas fa-envelope-square fa-stack-1x fa-inverse" style="color:blue"></i>
                             </span>
-                            Contact
+                            @*Contact*@
                         </a>
                     </li>
-                    
+
+                    <li>
+                        <a href="@Url.Action("Index", "Calendar")">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-calendar fa-stack-1x fa-inverse" style="color:blue"></i>
+                            </span>
+                            @*Calendar*@
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "TimeOffEvent")">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-plane-departure fa-stack-1x fa-inverse" style="color:blue"></i> 
+                            </span> 
+                        </a>
+                    </li>
+
+
                 </ul>
             </div>
             <span class="nav-text">
@@ -72,7 +89,9 @@
         @*End FOOTER for layout*@
     </div>
     @Scripts.Render("~/bundles/jquery")
+    <!--add boostrap for modal (kw)-->
     @Scripts.Render("~/bundles/bootstrap")
+
     <!--add fullcalendar bundle-->
     @Scripts.Render("~/bundles/fullcalendar")
     @RenderSection("scripts", required: false)
