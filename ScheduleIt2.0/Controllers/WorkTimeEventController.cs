@@ -16,9 +16,45 @@ namespace ScheduleIt2._0.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: WorkTimeEventModel
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string beginPeriod, string endPeriod)
         {
-            return View(db.EventModels.ToList());
+            //ViewBag variables used so that the view can configure the column heading hyperlinks with appropriate query string values
+            //  Using ternary statements
+            ViewBag.StartDateSortParm = String.IsNullOrEmpty(sortOrder) ? "start_desc" : "";
+            ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "end_desc" : "EndDate";
+            ViewBag.TotalHoursSortParm = sortOrder == "TotalHours" ? "hours_desc" : "TotalHours";
+
+            //Using LINQ to Entities method: specify the column to sort by
+            //create an IQueryable<T> variable
+            var workTimeEvent = from w in db.WorkTimeEventModels
+                                select w;
+
+
+            //pass the sortOrder query string parameter into the switch statement 
+            switch (sortOrder)
+            {
+                case "start_desc":
+                    workTimeEvent = workTimeEvent.OrderByDescending(w => w.StartTime);
+                    break;
+                case "EndDate":
+                    workTimeEvent = workTimeEvent.OrderBy(w => w.EndTime);
+                    break;
+                case "end_desc":
+                    workTimeEvent = workTimeEvent.OrderByDescending(w => w.EndTime);
+                    break;
+                case "TotalHours":
+                    workTimeEvent = workTimeEvent.OrderBy(w => w.TotalHours);
+                    break;
+                case "hours_desc":
+                    workTimeEvent = workTimeEvent.OrderByDescending(w => w.TotalHours);
+                    break;
+                default:
+                    workTimeEvent = workTimeEvent.OrderBy(w => w.StartTime);
+                    break;
+            }
+            //note: the query is not executed until the workTimeEvent queryable object is converted into a collection
+            //      Therefore, calling ToList is critical
+            return View(workTimeEvent.ToList());
         }
 
         // GET: WorkTimeEventModel/Details/5

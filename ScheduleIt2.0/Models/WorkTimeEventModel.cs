@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -23,5 +24,11 @@ namespace ScheduleIt2._0.Models
             else StartTime = DateTime.Now;
             Message = message;
         }
+
+        /// <summary>
+        /// result of total hours in shift time (shift end - shift start)
+        /// </summary>
+        [Display(Name = "Total Hours")]
+        public DateTime? TotalHours { get; set; }
     }
 }

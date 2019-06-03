@@ -36,9 +36,34 @@ namespace ScheduleIt2._0
 
                 ApplicationDbContext context = new ApplicationDbContext();
 
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
                 string password = "Password1!";
+
+                // Creating Admin role
+                if (!roleManager.RoleExists("Admin"))
+                {  
+                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                    role.Name = "Admin";
+                    roleManager.Create(role);
+                }
+
+                // Creating Manager role    
+                if (!roleManager.RoleExists("Manager"))
+                {
+                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                    role.Name = "Manager";
+                    roleManager.Create(role);
+                }
+
+                // Creating Employee role    
+                if (!roleManager.RoleExists("Employee"))
+                {
+                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                    role.Name = "Employee";
+                    roleManager.Create(role);
+                }
 
                 if (userManager.FindByName("1@dummy.com") == null)
                 {
@@ -59,7 +84,11 @@ namespace ScheduleIt2._0
                     };
 
                     var result = userManager.Create(dummy, password);
-                    
+
+                    if (result.Succeeded)
+                    {
+                        var result1 = userManager.AddToRole(dummy.Id, "Admin");
+                    }
                 }
 
                 if (userManager.FindByName("2@dummy.com") == null)
@@ -81,7 +110,10 @@ namespace ScheduleIt2._0
                     };
 
                     var result = userManager.Create(dummy, password);
-                    
+                    if (result.Succeeded)
+                    {
+                        var result1 = userManager.AddToRole(dummy.Id, "Employee");
+                    }
                 }
 
                 if (userManager.FindByName("3@dummy.com") == null)
@@ -103,7 +135,10 @@ namespace ScheduleIt2._0
                     };
 
                     var result = userManager.Create(dummy, password);
-                    
+                    if (result.Succeeded)
+                    {
+                        var result1 = userManager.AddToRole(dummy.Id, "Employee");
+                    }
                 }
 
                 if (userManager.FindByName("4@dummy.com") == null)
@@ -125,7 +160,10 @@ namespace ScheduleIt2._0
                     };
 
                     var result = userManager.Create(dummy, password);
-                    
+                    if (result.Succeeded)
+                    {
+                        var result1 = userManager.AddToRole(dummy.Id, "Employee");
+                    }
                 }
 
                 if (userManager.FindByName("5@dummy.com") == null)
@@ -147,7 +185,10 @@ namespace ScheduleIt2._0
                     };
 
                     var result = userManager.Create(dummy, password);
-                    
+                    if (result.Succeeded)
+                    {
+                        var result1 = userManager.AddToRole(dummy.Id, "Employee");
+                    }
                 }
             }
         }
