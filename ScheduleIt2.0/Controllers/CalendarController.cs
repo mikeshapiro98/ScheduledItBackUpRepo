@@ -9,6 +9,7 @@ namespace ScheduleIt2._0.Controllers
     public class CalendarController : Controller
     {
         // GET: Calendar
+        [Authorize]
         public ActionResult Index()
         {
             return View();

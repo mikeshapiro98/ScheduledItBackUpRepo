@@ -61,6 +61,7 @@ namespace ScheduleIt2._0.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+        public string Message { get; set; }
     }
 
     public class RegisterViewModel

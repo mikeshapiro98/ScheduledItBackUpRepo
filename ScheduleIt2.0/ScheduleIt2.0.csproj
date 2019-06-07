@@ -178,6 +178,7 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageSystemController.cs" />
     <Compile Include="Controllers\TimeOffEventController.cs" />
     <Compile Include="Controllers\WorkTimeEventController.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,11 +244,24 @@
     <Compile Include="Migrations\201905292322301_tryagain.Designer.cs">
       <DependentUpon>201905292322301_tryagain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906050439368_inheriteventmodel.cs" />
+    <Compile Include="Migrations\201906050439368_inheriteventmodel.Designer.cs">
+      <DependentUpon>201906050439368_inheriteventmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906050441527_aftercontrollerview.cs" />
+    <Compile Include="Migrations\201906050441527_aftercontrollerview.Designer.cs">
+      <DependentUpon>201906050441527_aftercontrollerview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906052002409_testWorkTime.cs" />
+    <Compile Include="Migrations\201906052002409_testWorkTime.Designer.cs">
+      <DependentUpon>201906052002409_testWorkTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessageSystem.cs" />
     <Compile Include="Models\TimeOffEvent.cs" />
     <Compile Include="Models\WorkTimeEventModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -267,6 +281,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\The-Tech-Academy-Logo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -471,6 +486,11 @@
     <Content Include="Views\TimeOffEvent\Details.cshtml" />
     <Content Include="Views\TimeOffEvent\Edit.cshtml" />
     <Content Include="Views\TimeOffEvent\Index.cshtml" />
+    <Content Include="Views\MessageSystem\Create.cshtml" />
+    <Content Include="Views\MessageSystem\Delete.cshtml" />
+    <Content Include="Views\MessageSystem\Details.cshtml" />
+    <Content Include="Views\MessageSystem\Edit.cshtml" />
+    <Content Include="Views\MessageSystem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -527,6 +547,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905292322301_tryagain.resx">
       <DependentUpon>201905292322301_tryagain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906050439368_inheriteventmodel.resx">
+      <DependentUpon>201906050439368_inheriteventmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906050441527_aftercontrollerview.resx">
+      <DependentUpon>201906050441527_aftercontrollerview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906052002409_testWorkTime.resx">
+      <DependentUpon>201906052002409_testWorkTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

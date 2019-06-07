@@ -5,28 +5,70 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myBtn").click(function () {
+            var value = document.getElementById("myBtn").innerHTML;
+              if (value == "Clock In") {
+             $(".clockinbtn").text('Clock Out');
+             $("#ClockInModal").modal('show');
+
+         } else {
+             $(".clockinbtn").text('Clock Out');
+              $("#ClockOutModal").modal('show');
+         }
+           
+          
+        });
+    });
+     function AddButtonClick(){ 
+         //change text from add to Update
+         var value = document.getElementById("BtnTwo").innerHTML;
+         if (value == "Clock In") {
+             $("#BtnTwo").text('Clock In');
+             $("#ClockInModal").modal('show');
+
+         } else {
+             $("#BtnTwo").text('Clock Out');
+              $("#ClockOutModal").modal('show');
+         }
+       
+
+         
+    }
+</script>
+<br />
+<br />
+
+<div class="row" align="center">
+    <div class="col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+        <div id="logo" align="center" class="row">
+            <img src="~/Images/The-Tech-Academy-Logo.png" class="img-responsive mx-auto" />
+        </div>
+        
+        <section id="loginForm" align="center">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                <div class="centerthis">
+                    <div class="form-group centerthis">
+                        <div class="col-md-offset-1 col-md-10 mx-auto username">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control text-center centerthis", placeholder = "Username" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger centerthis" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    <div class="form-group text-center">
+                        <div class="col-md-offset-1 col-md-10 mx-auto uPassword">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control text-center centerthis", placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger centerthis" })
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -37,13 +79,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-primary" />
+               
+                <div class="form-group  text-center">
+                    <div class="col-md-offset-1 col-md-auto text-center">
+                        <input type="submit" value="Log in" class="loginbtn " />
                         <!-- button to open clock in modal-->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ClockInModal">Clock In</button>
+                        <button type="button" class="clockinbtn clockoutbtn" id="myBtn">Clock In</button>
                         <!-- button to open clock out modal-->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ClockOutModal">Clock Out</button>
+                        <button type="button" class="clockinbtn" onclick="AddButtonClick();" id="BtnTwo">Clock Out</button>
                     </div>
                 </div>
 
@@ -64,7 +107,8 @@
                                 <div class="form-group">
                                     <label for="clockin">Clock in:</label>
                                     <br />
-                                    <textarea type="text" class="form-control" id="clockin" style="min-width: 100%" rows="4" placeholder="This is a clock in note"></textarea>
+
+                                    <textarea type="text" name="Message" class="form-control" id="clockin" style="min-width: 100%" rows="4" placeholder="This is a clock in note"></textarea>
 
                                 </div>
                                 <div class="dropdown">
@@ -106,7 +150,7 @@
                                 <div class="form-group">
                                     <label for="clockout">Clock out:</label>
                                     <br />
-                                    <textarea type="text" class="form-control" id="clockout" style="min-width: 100%" rows="4" placeholder="This is a clock out note"></textarea>
+                                    <textarea type="text" name="Message" class="form-control" id="clockout" style="min-width: 100%" rows="4" placeholder="This is a clock out note"></textarea>
 
                                 </div>
                                 <div class="dropdown">
@@ -142,14 +186,15 @@
             </p>*@
             }
         </section>
+        
+        @*<div class="col-md-4">
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            </div>*@
     </div>
-    @*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+   
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

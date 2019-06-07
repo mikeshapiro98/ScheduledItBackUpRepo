@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ScheduleIt2._0.Models;
 
 namespace ScheduleIt2._0.Controllers
@@ -15,10 +16,11 @@ namespace ScheduleIt2._0.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: TimeOffEvent
+        [Authorize]
         public ActionResult Index()
         {
-            //return the list to be referenced in index view foreach block of code
-            return View();
+            //return the list to be referenced in index view foreach block of code and ensure it won't be null by passing in db
+            return View(db.TimeOffEvents.ToList());
         }
 
         // GET: TimeOffEvent/Details/5
@@ -52,9 +54,11 @@ namespace ScheduleIt2._0.Controllers
             if (ModelState.IsValid)
             {
                 timeOffEvent.EventId = Guid.NewGuid();
+                timeOffEvent.Submitted = DateTime.Now;
                 db.TimeOffEvents.Add(timeOffEvent);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //Once the form has been submitted, return to home
+                return View("~/Views/Home/Index.cshtml");
             }
 
             return View(timeOffEvent);

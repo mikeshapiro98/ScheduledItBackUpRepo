@@ -11,7 +11,6 @@ namespace ScheduleIt2._0.Models
         /// <summary>
         /// Model for when a user clocks in or out, stored in the Events Table
         /// </summary>
-        /// 
         public WorkTimeEventModel()
         {
         }
@@ -24,11 +23,56 @@ namespace ScheduleIt2._0.Models
             else StartTime = DateTime.Now;
             Message = message;
         }
+        public ClockFunctionStatus Clockout(DateTime? dt = null)
+        {
+            try
+            {
+                //If we are clocking out but there is already a value, this is an update
+                if (this.EndTime.HasValue)
+                {
+                    this.EndTime = dt.HasValue ? dt : DateTime.Now;
+                    return ClockFunctionStatus.ClockOutUpdated;
+                }
+                else
+                {
+                    this.EndTime = dt.HasValue ? dt : DateTime.Now;
+                    return ClockFunctionStatus.ClockOutSuccess;
+                }
+            }
+            catch
+            {
+                return ClockFunctionStatus.ClockOutFail;
+            }
+        }
+
+        public enum ClockFunctionStatus
+        {
+            ClockInSuccess,
+            ClockInFail,
+            ClockOutSuccess,
+            ClockOutFail,
+            ClockInUpdated,
+            ClockOutUpdated
+        }
 
         /// <summary>
         /// result of total hours in shift time (shift end - shift start)
         /// </summary>
         [Display(Name = "Total Hours")]
-        public DateTime? TotalHours { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = @"{0:hh\:mm\:ss}", ApplyFormatInEditMode = true),
+        Range(typeof(TimeSpan), "00:00", "23:59")]
+        public TimeSpan? TotalHours
+        {
+            get
+            {
+                if (StartTime.HasValue && EndTime.HasValue)
+                {
+                    return EndTime.Value.Subtract(StartTime.Value);
+                }
+                return null;
+            }
+            set { }
+        }
     }
 }

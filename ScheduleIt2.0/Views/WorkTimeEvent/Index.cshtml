@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ScheduleIt2._0.Models.WorkTimeEventModel>
+﻿@using ScheduleIt2._0.Models
+@model IEnumerable<ScheduleIt2._0.Models.WorkTimeEventModel>
+
 @{
     ViewBag.Title = "Work Periods";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,6 +22,7 @@
         <th>
             @Html.ActionLink("Total Hours", "Index", new { sortOrder = ViewBag.TotalHoursSortParmd, currentFilter = ViewBag.CurrentFilter })
         </th>
+       
         <th>
             Shift Notes
         </th>
@@ -38,7 +41,8 @@
                 @Html.DisplayFor(modelItem => item.TotalHours)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Message)
+
+                @Html.DisplayFor(modelItem =>item.Message)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.EventId })

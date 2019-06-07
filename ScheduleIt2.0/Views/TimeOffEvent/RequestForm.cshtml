@@ -1,0 +1,76 @@
+﻿@model ScheduleIt2._0.Models.TimeOffEvent
+
+
+<h2>@ViewBag.Title</h2>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        <section id="timeOffForm">
+            @using (Html.BeginForm("Create", "TimeOffEvent", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <!--Start time-->
+                <div class="form-group">
+                    <h3>@Html.LabelFor(m => m.StartTime, new { @class = "col-md-2 control-label" })</h3>
+                    <table class="table">
+                        <th>
+                            Start Date
+                            @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control", @type = "date", @placeholder = "dd/MMM/yyyy" })
+                        </th>
+                        <th>
+                            All Day
+                            <br />
+                            @Html.CheckBox("All Day", true)
+                        </th>
+                        <th>
+                            Start Time
+                            @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control", @type = "time", @placeholder = "dd/MMM/yyyy" })
+                        </th>
+
+                    </table>
+                </div>
+                <!--End time-->
+                <div class="form-group">
+                    <h3>@Html.LabelFor(m => m.EndTime, new { @class = "col-md-2 control-label" })</h3>
+                    <table class="table">
+                        <th>
+                            End Date
+                            @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @type = "date" })
+                        </th>
+                        <th>
+                            All Day
+                            <br />
+                            @Html.CheckBox("All Day", true)
+                        </th>
+                        <th>
+                            End Time
+                            @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @type = "time" })
+                        </th>
+                    </table>
+                </div>
+                <!--Optional Message-->
+                <div class="form-group">
+                    <h3>@Html.LabelFor(m => m.Message, new { @class = "col-md-5 control-label" })</h3>
+                    <table class="table">
+                        <th>@Html.TextBoxFor(m => m.Message, new { @class = "form-control", @placeholder = "add message" })</th>
+                    </table>
+                </div>
+                <!--Buttons-->
+                <div class="form-group text-center">
+                    <div>
+                        <input type="submit" value="Submit" class="btn btn-primary" onclick="SuccessMessage()"/>
+                        <input type="submit" value="Clear Form" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </section>
+
+        <br />
+    </div>
+</div>
+
+<script>
+    function SuccessMessage() {
+        alert("Thank you. Your request has been submitted and is pending approval.");
+    }
+</script>

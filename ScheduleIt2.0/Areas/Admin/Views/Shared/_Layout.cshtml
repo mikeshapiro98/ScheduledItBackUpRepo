@@ -43,8 +43,8 @@
         <!--mt-5 added so any body content isn't right underneath the nav-->
         @RenderBody()
 
-
-        @Html.Action(actionName: "Create", controllerName: "WorkTimeEvent")
+        <!--This Html.Action was commented out because it would prevent the url.action from going to admin/home/view-->
+        @*@Html.Action(actionName: "Create", controllerName: "WorkTimeEvent")*@
 
         <hr />
         <footer>

@@ -56,9 +56,19 @@ namespace ScheduleIt2._0.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            LoginViewModel lvm = new LoginViewModel();
+
+
+            if (TempData["message"] != null)
+            {
+                lvm.Message = TempData["message"].ToString();
+            }
+
             ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
+
+            return View(lvm);
+        
+    }
 
         //
         // POST: /Account/Login
@@ -78,7 +88,8 @@ namespace ScheduleIt2._0.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //Upon login success, redirect to the worktimeevent index page
+                    return RedirectToAction("Index", "WorkTimeEvent");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

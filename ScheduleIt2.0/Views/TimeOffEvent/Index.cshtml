@@ -1,111 +1,45 @@
-﻿@*@model IEnumerable<ScheduleIt2._0.Models.TimeOffEvent>-->*@
-@using ScheduleIt2._0.Models
-@model TimeOffViewModel
+﻿@model IEnumerable<ScheduleIt2._0.Models.TimeOffEvent>
 
 @{
     ViewBag.Title = "Time Off Requests";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
-<br />
-<div class="row">
-    <div class="col-md-8">
-        <section id="timeOffForm">
-            @using (Html.BeginForm("Create", "TimeOffEvent", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                <!--Start time-->
-                <div class="form-group">
-                    <h3>@Html.LabelFor(m => m.StartTime, new { @class = "col-md-2 control-label" })</h3>
-                    <table class="table">
-                        <th>
-                            Start Date
-                            @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control", @type = "date", @placeholder = "dd/MMM/yyyy" })
-                        </th>
-                        <th>
-                            All Day
-                            <br />
-                            @Html.CheckBox("All Day", true)
-                        </th>
-                        <th>
-                            Start Time
-                            @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control", @type = "time", @placeholder = "dd/MMM/yyyy" })
-                        </th>
-
-                    </table>
-                </div>
-                <!--End time-->
-                <div class="form-group">
-                    <h3>@Html.LabelFor(m => m.EndTime, new { @class = "col-md-2 control-label" })</h3>
-                    <table class="table">
-                        <th>
-                            End Date
-                            @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @type = "date" })
-                        </th>
-                        <th>
-                            All Day
-                            <br />
-                            @Html.CheckBox("All Day", true)
-                        </th>
-                        <th>
-                            End Time
-                            @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @type = "time" })
-                        </th>
-                    </table>
-                </div>
-                <!--Optional Message-->
-                <div class="form-group">
-                    <h3>@Html.LabelFor(m => m.Message, new { @class = "col-md-5 control-label" })</h3>
-                    <table class="table">
-                        <th>@Html.TextBoxFor(m => m.Message, new { @class = "form-control", @placeholder = "add message" })</th>
-                    </table>
-                </div>
-                <!--Buttons-->
-                <div class="form-group text-center">
-                    <div>
-                        <input type="submit" value="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Clear Form" class="btn btn-primary" />
-                    </div>
-                    @Html.DisplayNameFor(model => model.Submitted):
-                </div>    
-            }
-        </section>
-
-        <br />
-            <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.StartTime)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.EndTime)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.RequestStatus)
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @*@foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartTime)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EndTime)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RequestStatus)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.EventId }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
-                            </td>
-                        </tr>
-                    }*@
-            </table>
-        
-    </div>
+<div class="container text-center">
+    @* Add ", new ScheduleIt2._0.Models.TimeOffEvent(), because the partial expects an instance of the TimeOffEvent*@
+    @Html.Partial("RequestForm", new ScheduleIt2._0.Models.TimeOffEvent())
 </div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+            </td>
+        </tr>
+    }
+</table>

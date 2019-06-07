@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -18,16 +19,26 @@ namespace ScheduleIt2._0.Models
         /// <summary>
         ///start time of event property
         /// </summary>
+        [Display(Name = "Start")]
+        [Column(TypeName = "datetime2")]
+        //add datatype.date to prevent sql datetime2 error
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
         ///end time of event property
         /// </summary>
+        [Column(TypeName = "datetime2")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "End")]
         public DateTime? EndTime { get; set; }
 
         /// <summary>
         ///note attached to event property
         /// </summary>
+        [Display(Name = "Optional Message")]
         public string Message { get; set; }
 
         /// <summary>

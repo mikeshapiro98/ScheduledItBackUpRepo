@@ -23,7 +23,7 @@ namespace ScheduleIt2._0.Controllers
             ViewBag.StartDateSortParm = String.IsNullOrEmpty(sortOrder) ? "start_desc" : "";
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "end_desc" : "EndDate";
             ViewBag.TotalHoursSortParm = sortOrder == "TotalHours" ? "hours_desc" : "TotalHours";
-
+           
             //Using LINQ to Entities method: specify the column to sort by
             //create an IQueryable<T> variable
             var workTimeEvent = from w in db.WorkTimeEventModels
@@ -84,18 +84,20 @@ namespace ScheduleIt2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ClockIn(WorkTimeEventModel workTimeEventModel, LoginViewModel lvm)
         {
+            // Checks Db users for email that matches the email user typed in
+            ApplicationUser dbUser = db.Users.FirstOrDefault(x => x.Email == lvm.Email || x.UserName == lvm.Email);
             //gets user from db by email or username
             var user = db.Users.SingleOrDefault(x => x.UserName == lvm.Email || x.Email == lvm.Email);
             //maps user from db to current user
             var ClockInTimeEvent = db.EventModels.FirstOrDefault(x => x.User.Id == user.Id);
             // Checks if user is clocked in by checking if any events exist without a endtime
-            var TimeEvent = db.EventModels.FirstOrDefault(x => x.User.Id == user.Id && !x.EndTime.HasValue);
+            var WorkTimeEvent = db.EventModels.FirstOrDefault(x => x.User.Id == dbUser.Id && !x.EndTime.HasValue);
 
             //if user is already clocked in but has no endtime value
-            if (ClockInTimeEvent != null && TimeEvent != null)
+            if (ClockInTimeEvent != null && WorkTimeEvent != null)
             {
                 //displays message to user *currently using to keep track of methods
-                TempData["Message"] = "Already clocked in";
+                TempData["message"] = "Already clocked in";
                 return RedirectToAction("Login", "Account");
             }
             //if a user is not already clocked in, create a new worktimeevent and save to db
@@ -103,12 +105,12 @@ namespace ScheduleIt2._0.Controllers
             else
             {
                 DateTime start = DateTime.Now;
-                var message = "clock in: ";
-                WorkTimeEventModel clockIn = new WorkTimeEventModel(user, message, start);
+                var message = "clock in: " +lvm.Message;
+                WorkTimeEventModel clockIn = new WorkTimeEventModel(dbUser, message, start);
                 db.EventModels.Add(clockIn);
                 db.SaveChanges();
                 //displays message to user *currently using to keep track of methods
-                TempData["Message"] = "Clock in: " + DateTime.Now.ToString("h:mm tt") + " Have a great shift " + user.Fname;
+                TempData["message"] = "Clock in: " + DateTime.Now.ToString("h:mm tt") + " Have a great shift " + user.Fname;
                 return RedirectToAction("Login", "Account");
             }
         }
@@ -116,23 +118,28 @@ namespace ScheduleIt2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ClockOut(WorkTimeEventModel workTimeEventModel, LoginViewModel lvm)
         {
+           
             //gets user from db by email or username
             var user = db.Users.SingleOrDefault(x => x.UserName == lvm.Email || x.Email == lvm.Email);
-            var TimeEvent = db.EventModels.FirstOrDefault(x => x.User.Id == user.Id && !x.EndTime.HasValue);
-            if (TimeEvent != null)
+            // Checks Db users for email that matches the email user typed in
+            ApplicationUser dbUser = db.Users.FirstOrDefault(x => x.Email == lvm.Email || x.UserName == lvm.Email);
+            var worktime = db.EventModels.FirstOrDefault(x => x.User.Id == dbUser.Id && !x.EndTime.HasValue);
+            if (worktime != null)
             {  //Update the current open event with an end datetime.
                 //Updates message column in db Event
-                TimeEvent.Message += "clock out: ";
+                worktime.Message += "clock out: " +lvm.Message;
                 DateTime endTime = DateTime.Now;
-                TimeEvent.EndTime = endTime;
+                worktime.EndTime = endTime;
+                workTimeEventModel.Clockout();
+                db.SaveChanges();
                 db.SaveChanges();
                 //displays message to user *currently using to keep track of methods
-                TempData["Message"] = "Clock out: " + DateTime.Now.ToString("h:mm tt") + " Have a great day!";
+                TempData["message"] = "Clock out: " + DateTime.Now.ToString("h:mm tt") + " Have a great day!";
                 return RedirectToAction("Login", "Account");
             }
             //displays message to user *currently using to keep track of methods
             else
-                TempData["Message"] = "Unable to clock out, please clock in to clock out";
+                TempData["message"] = "Unable to clock out, please clock in to clock out";
             return RedirectToAction("Login", "Account");
         }
 
