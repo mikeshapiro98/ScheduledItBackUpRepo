@@ -23,7 +23,57 @@ namespace ScheduleIt2._0.Controllers
             ViewBag.StartDateSortParm = String.IsNullOrEmpty(sortOrder) ? "start_desc" : "";
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "end_desc" : "EndDate";
             ViewBag.TotalHoursSortParm = sortOrder == "TotalHours" ? "hours_desc" : "TotalHours";
-           
+           //ApplicationUser user = new ApplicationUser();
+            
+
+
+            // Grabs the current user ID
+            var userId = User.Identity.GetUserId();
+            // Grabs all events in Db that have the same user ID as the one logging in
+            ApplicationUser user = db.Users.Find(userId);
+            //Checking for clocked in status
+            bool ClockedInStatus = db.WorkTimeEventModels.Any(x => x.User.Id == userId && !x.EndTime.HasValue);
+            if (ClockedInStatus == true)
+            {
+                ViewBag.Status = "Currently Clocked In";
+            }
+            else
+            {
+                ViewBag.Status = "Not Clocked In";
+            }
+            var result = (from t in db.WorkTimeEventModels
+                          where t.EventId == t.EventId
+
+                          select new
+                          {
+                              t.TotalHours
+
+                          }).ToList();
+            double sum = 0;
+            foreach (var item in result)
+            {
+                //if (item.TotalHours.HasValue)
+                //{
+                //    TimeSpan timespan = item.TotalHours.Value;
+                //    sum += item.TotalHours.HasValue ? item.TotalHours.Value.TotalMinutes : 0;
+                //}
+                //else
+                //{
+                //    return null;
+                //}
+
+                //sum += Convert.ToDouble(item.TotalHours);
+               // sum += item.TotalHours.HasValue ? item.TotalHours.Value.TotalMinutes : 0;
+
+                ViewBag.ShowSum = sum;
+                var projectedpay = Convert.ToDecimal(sum / 60) * user.HourlyRate;
+                ViewBag.Pay = projectedpay;
+            }
+            //var result = (from t in db.WorkTimeEventModels
+            //              where t.EventId == t.EventId
+            //              group t by t.TotalHours into d
+            //              select d).Sum();
+
             //Using LINQ to Entities method: specify the column to sort by
             //create an IQueryable<T> variable
             var workTimeEvent = from w in db.WorkTimeEventModels
