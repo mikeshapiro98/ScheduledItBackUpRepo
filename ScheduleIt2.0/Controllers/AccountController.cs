@@ -89,7 +89,10 @@ namespace ScheduleIt2._0.Controllers
             {
                 case SignInStatus.Success:
                     //Upon login success, redirect to the worktimeevent index page
-                    return RedirectToAction("Index", "WorkTimeEvent");
+                    //return RedirectToAction("Index", "WorkTimeEvent");
+
+
+                    return RedirectToAction("ClockInPage", "WorkTimeEvent");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

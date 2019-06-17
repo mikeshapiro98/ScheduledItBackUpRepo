@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ScheduleIt2.0",
+    "\\ScheduleIt2.0\\Views",
+    "\\ScheduleIt2.0\\Views\\Account"
   ],
-  "SelectedNode": "\\ScheduleIt2.0.sln",
+  "SelectedNode": "\\ScheduleIt2.0\\Views\\Account\\Login.cshtml",
   "PreviewInSolutionExplorer": false
 }

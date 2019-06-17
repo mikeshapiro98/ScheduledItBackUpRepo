@@ -95,8 +95,50 @@ textarea {
     border-color: blue;
     font-weight: bold;
     color: #808080;
+    /*color: white;*/
     cursor: pointer;
 }
- .username:hover {
-        border-color: #FFB035;
+
+a, a:link, a:active, a:any-link {
+    color: black;
+    display:inline-block;
+}
+
+    a:hover {
+        color: black;
+        display:inline-block;
     }
+button#btnGroupDrop1 {
+    background-color: darkgoldenrod;
+    color:#ffe28c;
+}
+    button#btnGroupDrop1:hover {
+        color: white;
+    }
+#name {
+    color:#ffe28c;
+    text-decoration: none;
+    font-weight: 400;
+}
+    #name:hover {
+    color:white;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+#registerLink, #loginLink {
+    text-decoration: none;
+    display:inline-block;
+    background-color:darkgoldenrod;
+}
+
+    #registerLink:hover, #loginLink:hover {
+        color: black;
+        text-decoration: none;
+        display:inline-block;
+        font-weight: 400;
+    }
+
+
+
+

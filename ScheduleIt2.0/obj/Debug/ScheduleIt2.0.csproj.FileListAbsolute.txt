@@ -590,7 +590,6 @@ C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\bin\Microsoft.Owin.Security.Twit
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2.0.csprojAssemblyReference.cache
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.InitialCreate.resources
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.FirstMigration.resources
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.Double.resources
@@ -614,3 +613,6 @@ C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2.0.csproj.C
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2.0.csproj.CopyComplete
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2.0.dll
 C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2.0.pdb
+C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.AddEmailModel.resources
+C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2._0.Migrations.updateEmailModel.resources
+C:\Users\madel\Desktop\ScheduleIT\ScheduleIt2.0\obj\Debug\ScheduleIt2.0.csprojAssemblyReference.cache

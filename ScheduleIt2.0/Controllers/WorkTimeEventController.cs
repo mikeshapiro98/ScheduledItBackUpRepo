@@ -127,6 +127,9 @@ namespace ScheduleIt2._0.Controllers
         {
             return View();
         }
+
+
+       
         // POST: WorkTimeEventModel/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -134,21 +137,21 @@ namespace ScheduleIt2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ClockIn(WorkTimeEventModel workTimeEventModel, LoginViewModel lvm)
         {
-            // Checks Db users for email that matches the email user typed in
-            ApplicationUser dbUser = db.Users.FirstOrDefault(x => x.Email == lvm.Email || x.UserName == lvm.Email);
-            //gets user from db by email or username
-            var user = db.Users.SingleOrDefault(x => x.UserName == lvm.Email || x.Email == lvm.Email);
+
+             var user = db.Users.SingleOrDefault(x => x.Id == lvm.UserId);
+
             //maps user from db to current user
             var ClockInTimeEvent = db.EventModels.FirstOrDefault(x => x.User.Id == user.Id);
             // Checks if user is clocked in by checking if any events exist without a endtime
-            var WorkTimeEvent = db.EventModels.FirstOrDefault(x => x.User.Id == dbUser.Id && !x.EndTime.HasValue);
+            var WorkTimeEvent = db.EventModels.FirstOrDefault(x => x.User.Id == user.Id && !x.EndTime.HasValue);
 
             //if user is already clocked in but has no endtime value
             if (ClockInTimeEvent != null && WorkTimeEvent != null)
             {
                 //displays message to user *currently using to keep track of methods
                 TempData["message"] = "Already clocked in";
-                return RedirectToAction("Login", "Account");
+                //return RedirectToAction("Login", "Account");
+                return RedirectToAction("ClockInPage", "WorkTimeEvent");
             }
             //if a user is not already clocked in, create a new worktimeevent and save to db
             //clock in 
@@ -156,12 +159,12 @@ namespace ScheduleIt2._0.Controllers
             {
                 DateTime start = DateTime.Now;
                 var message = "clock in: " +lvm.Message;
-                WorkTimeEventModel clockIn = new WorkTimeEventModel(dbUser, message, start);
+                WorkTimeEventModel clockIn = new WorkTimeEventModel(user, message, start);
                 db.EventModels.Add(clockIn);
                 db.SaveChanges();
                 //displays message to user *currently using to keep track of methods
                 TempData["message"] = "Clock in: " + DateTime.Now.ToString("h:mm tt") + " Have a great shift " + user.Fname;
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("ClockInPage", "WorkTimeEvent");
             }
         }
         [HttpPost]
@@ -169,11 +172,8 @@ namespace ScheduleIt2._0.Controllers
         public ActionResult ClockOut(WorkTimeEventModel workTimeEventModel, LoginViewModel lvm)
         {
            
-            //gets user from db by email or username
-            var user = db.Users.SingleOrDefault(x => x.UserName == lvm.Email || x.Email == lvm.Email);
-            // Checks Db users for email that matches the email user typed in
-            ApplicationUser dbUser = db.Users.FirstOrDefault(x => x.Email == lvm.Email || x.UserName == lvm.Email);
-            var worktime = db.EventModels.FirstOrDefault(x => x.User.Id == dbUser.Id && !x.EndTime.HasValue);
+            var user = db.Users.SingleOrDefault(x => x.Id == lvm.UserId);
+            var worktime = db.EventModels.FirstOrDefault(x => x.User.Id == user.Id && !x.EndTime.HasValue);
             if (worktime != null)
             {  //Update the current open event with an end datetime.
                 //Updates message column in db Event
@@ -185,12 +185,23 @@ namespace ScheduleIt2._0.Controllers
                 db.SaveChanges();
                 //displays message to user *currently using to keep track of methods
                 TempData["message"] = "Clock out: " + DateTime.Now.ToString("h:mm tt") + " Have a great day!";
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("ClockInPage", "WorkTimeEvent");
             }
             //displays message to user *currently using to keep track of methods
             else
                 TempData["message"] = "Unable to clock out, please clock in to clock out";
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("ClockInPage", "WorkTimeEvent");
+        }
+
+        public ActionResult ClockInPage()
+        {
+            var userId = User.Identity.GetUserId();
+
+            LoginViewModel lvm = new LoginViewModel();
+            lvm.UserId = userId;
+            // Grabs the current user ID
+
+            return View(lvm);
         }
 
         // GET: WorkTimeEventModel/Edit/5

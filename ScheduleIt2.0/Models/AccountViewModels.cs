@@ -49,6 +49,8 @@ namespace ScheduleIt2._0.Models
 
     public class LoginViewModel
     {
+        public string UserId { get; set; }
+
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
