@@ -1,0 +1,57 @@
+﻿@using ScheduleIt2._0.Models
+@model IEnumerable<ScheduleIt2._0.Models.WorkTimeEventModel>
+
+@{
+    ViewBag.Title = "Work Periods";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Work Periods</h2>
+<div align="right">
+    Total Hours:
+    @Html.ViewBag.ShowSum
+    <br />
+    Status:
+    @Html.ViewBag.Status
+    <br />
+    Projected Pay:
+    @Html.ViewBag.Pay
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Shift Start Date", "Index", new { sortOrder = ViewBag.StartDateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Shift End Date", "Index", new { sortOrder = ViewBag.EndDateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Total Hours", "Index", new { sortOrder = ViewBag.TotalHoursSortParmd, currentFilter = ViewBag.CurrentFilter })
+        </th>
+       
+        <th>
+            Shift Notes
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalHours)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem =>item.Message)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
+            </td>
+        </tr>
+    }
+</table>

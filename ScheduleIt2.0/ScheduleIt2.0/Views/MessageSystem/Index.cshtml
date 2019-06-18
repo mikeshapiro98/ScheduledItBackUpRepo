@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ScheduleIt2._0.Models.MessageSystem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Unread Messages</h2>
+<!--Create is here to test functionality of MessageSystem MVC before it is connected to admin capabilities-->
+@Html.ActionLink("Create", "Create")
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MessageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateSent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnreadMessage)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <!--If unread = true, display item results in model-->
+        <!--Since a Ienumerable -->
+        if (item.UnreadMessage == true)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRead)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnreadMessage)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
+
+<h2>Read Messages</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MessageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateSent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnreadMessage)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <!--If unread = false, display item results in model-->
+        if (item.UnreadMessage == false)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRead)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnreadMessage)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EventId })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

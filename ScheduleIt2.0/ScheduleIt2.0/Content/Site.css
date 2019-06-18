@@ -1,0 +1,144 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+#logo {
+    margin: 0 auto;
+    display: block;
+}
+
+#workevent-logo {
+    float: left;
+    margin: 2% auto;
+}
+
+.my-1 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.centerthis {
+    margin-left: auto;
+    margin-right: auto;
+}
+.clockinbtn {
+    background-color: #22148e;
+    border: solid;
+    border-color: darkgoldenrod;
+    border-width: 2px;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 23px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+}
+
+    .clockinbtn:hover {
+        background-color: darkgoldenrod;
+        border-color: #1A2B51;
+        color: white;
+    }
+.loginbtn {
+    background-color: #22148e;
+    border: solid;
+    border-color: darkgoldenrod;
+    border-width: 2px;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 23px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+}
+
+    .loginbtn:hover {
+        background-color: darkgoldenrod;
+        border-color: #1A2B51;
+        color: white;
+    }
+.uPassword {
+    border-color: blue;
+    font-weight: bold;
+    color: #808080;
+    cursor: pointer;
+}
+    .uPassword:hover {
+        border-color: #FFB035;
+    }
+.username {
+    border-color: blue;
+    font-weight: bold;
+    color: #808080;
+    /*color: white;*/
+    cursor: pointer;
+}
+
+a, a:link, a:active, a:any-link {
+    color: black;
+    display:inline-block;
+}
+
+    a:hover {
+        color: black;
+        display:inline-block;
+    }
+button#btnGroupDrop1 {
+    background-color: darkgoldenrod;
+    color:#ffe28c;
+}
+    button#btnGroupDrop1:hover {
+        color: white;
+    }
+#name {
+    color:#ffe28c;
+    text-decoration: none;
+    font-weight: 400;
+}
+    #name:hover {
+    color:white;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+#registerLink, #loginLink {
+    text-decoration: none;
+    display:inline-block;
+    background-color:darkgoldenrod;
+}
+
+    #registerLink:hover, #loginLink:hover {
+        color: black;
+        text-decoration: none;
+        display:inline-block;
+        font-weight: 400;
+    }
+
+
+
+

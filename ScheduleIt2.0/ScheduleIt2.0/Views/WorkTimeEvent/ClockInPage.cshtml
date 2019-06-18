@@ -1,0 +1,131 @@
+﻿@using ScheduleIt2._0.Models
+
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "ClockIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clock In/Out</h2>
+<section id="loginForm" align="center">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group  text-center">
+            <div class="col-md-offset-1 col-md-auto text-center">
+                        
+                <!-- button to open clock in modal-->
+                <button type="button" class="clockinbtn" data-toggle="modal" id="clockIn" data-target="#TimeModal">Clock In</button>
+                <!-- button to open clock out modal-->
+                <button type="button" class="clockinbtn" data-toggle="modal" id="clockOut" data-target="#TimeOutModal">Clock Out</button>
+            </div>
+        </div>
+
+    //Time In Modal
+        <div class="modal" id="TimeModal">
+            <div class="modal-dialog modal-dialog-centered modal-dialog modal-dialog-centered-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Clock In</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text-danger"> Clocking in at: <span id="currentTime"></span></h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-block" data-toggle="modal" data-target="#ClockInModal">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    //Time out Modal
+        <div class="modal" id="TimeOutModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Clock Out</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="text-danger"> Clocking out at: <span id="currentTime2"></span></h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ClockOutModal">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Clock In Modal -->
+        <div class="modal" id="ClockInModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    @* Inserts hidden state
+                        for a property from your model
+                        which will be past back on post.
+                        *@
+                    @Html.HiddenFor(x=>x.UserId)
+                    <div class="modal-header">
+                        <h4 class="model-title">Clock In</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <textarea type="text" name="Message" class="form-control" id="clockin" style="min-width: 100%" rows="4" placeholder="This is a clock in note"></textarea>
+                                   
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- redirects to Actions in WorkTimeEvent controller -->
+                        <button type="submit" class="btn btn-danger" data-toggle="modal" formaction="@Url.Action("ClockIn", "WorkTimeEvent")" formmethod="post">Confirm</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Clock Out Modal -->
+        <div class="modal" id="ClockOutModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="model-title">Clock Out</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <textarea type="text" name="Message" class="form-control" id="clockout" style="min-width: 100%" rows="4" placeholder="This is a clock out note"></textarea>
+                            <br />
+                            @*This needs business logic still*@
+                            <select id="DropBreak" name="breakLength">
+                                <option value="null">Normal clock out</option>
+                                <option value="30"> 30 minute break</option>
+                                <option value="45"> 45 minute break</option>
+                                <option value="60"> 60 minute break</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- redirects to Actions in WorkTimeEvent controller -->
+                        <button type="submit" class="btn btn-danger" data-toggle="modal" formaction="@Url.Action("ClockOut", "WorkTimeEvent")" formmethod="post">Confirm</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="text-success">@TempData["Message"]</h5>
+    }
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+@*remove bootstrap cdn as it is preventing dropdown list*@ 
+<script src="~/Scripts/login/clockin.js"></script>
